@@ -2,7 +2,7 @@
     <img width=100% src="cover.png">
   </a>
 </p>
-<p align="center"> 🤖 Spin-up pseudo random vulnerable Android applications. 📱 </p>
+<p align="center"> 🤖 Create vulnerable Android apps for testing & training in seconds. 📱 </p>
 
 <br>
 
