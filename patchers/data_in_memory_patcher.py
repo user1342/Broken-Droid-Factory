@@ -1,5 +1,7 @@
 import random
+
 import randomword
+
 from patchers import patcher_interface
 
 
@@ -15,33 +17,32 @@ class data_in_memory(patcher_interface.patcher):
         '''
 
         self.logger("Adding encryption of device data in memory")
-        str_builder_name = "{}{}".format(randomword.get_random_word(), random.randint(0,1000))
-
-
+        str_builder_name = "{}{}".format(randomword.get_random_word(), random.randint(0, 1000))
 
         list_of_data_calls = [
-        'stringBuilder{}.append(Build.DEVICE).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.MODEL).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.PRODUCT).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.BOARD).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.getRadioVersion()).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.BOOTLOADER).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.DISPLAY).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.FINGERPRINT).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.HARDWARE).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.HOST).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.ID).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.MANUFACTURER).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.TAGS).append(" ");\n'.format(str_builder_name),
-        'stringBuilder{}.append(Build.TYPE).append(" ");\n'.format(str_builder_name)]
+            'stringBuilder{}.append(Build.DEVICE).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.MODEL).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.PRODUCT).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.BOARD).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.getRadioVersion()).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.BOOTLOADER).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.DISPLAY).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.FINGERPRINT).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.HARDWARE).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.HOST).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.ID).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.MANUFACTURER).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.TAGS).append(" ");\n'.format(str_builder_name),
+            'stringBuilder{}.append(Build.TYPE).append(" ");\n'.format(str_builder_name)]
 
         str_builder = 'StringBuilder stringBuilder{} = new StringBuilder();\n'.format(str_builder_name)
-        for iterator in range(0, random.randint(0,40)):
-            str_builder = str_builder + random.choice(list_of_data_calls)+"\n"
+        for iterator in range(0, random.randint(0, 40)):
+            str_builder = str_builder + random.choice(list_of_data_calls) + "\n"
 
-        string_name = "{}{}".format(randomword.get_random_word(), random.randint(0,1000))
-        str_builder = str_builder + "String plainTextString{} = stringBuilder{}.toString();\n".format(string_name, str_builder_name)
-        str_builder = str_builder+'''try {
+        string_name = "{}{}".format(randomword.get_random_word(), random.randint(0, 1000))
+        str_builder = str_builder + "String plainTextString{} = stringBuilder{}.toString();\n".format(string_name,
+                                                                                                      str_builder_name)
+        str_builder = str_builder + '''try {
             TimeUnit.SECONDS.sleep(30);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -73,7 +74,9 @@ class data_in_memory(patcher_interface.patcher):
                        string_var=string_name,
                        ciphertext_var=randomword.get_random_word() + str(random.randint(0, 1000)))
 
-        code_block = ['''import android.os.Build; import android.util.Log; import java.security.InvalidKeyException;import java.security.NoSuchAlgorithmException;import java.util.Base64;import java.util.concurrent.TimeUnit;import javax.crypto.BadPaddingException;import javax.crypto.Cipher;import javax.crypto.IllegalBlockSizeException;import javax.crypto.KeyGenerator;import javax.crypto.NoSuchPaddingException;import javax.crypto.SecretKey;''',str_builder]
+        code_block = [
+            '''import android.os.Build; import android.util.Log; import java.security.InvalidKeyException;import java.security.NoSuchAlgorithmException;import java.util.Base64;import java.util.concurrent.TimeUnit;import javax.crypto.BadPaddingException;import javax.crypto.Cipher;import javax.crypto.IllegalBlockSizeException;import javax.crypto.KeyGenerator;import javax.crypto.NoSuchPaddingException;import javax.crypto.SecretKey;''',
+            str_builder]
 
         mainActivity_file_path = self._get_path_to_file("MainActivity.java")
         self._add_imports_to_java_file(mainActivity_file_path, code_block[0])
