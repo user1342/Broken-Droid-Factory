@@ -9,7 +9,7 @@
 BDF is a Python tool designed to spin-up pseudo random vulnerable Android applications for vulnerability research, ethical hacking, and pen testing Android app practice. 
 - To get started, download the dependancies and run ```BrokenDroidFactory.py```, it's as simple as that! ✔️
 - Create a pseudo random Android APK that contains an assortment of vulnerable and issue prone code. 💀
-- After run a ```README.md``` file is created detailing the app's issues and vulnerabilities. 📝 
+- After run, a ```README.md``` file is created detailing the app's issues and vulnerabilities. 📝 
 
 # ➡️ Getting Started 
 ## Installation 
@@ -27,7 +27,7 @@ Run BDF with Python:
 python BrokenDroidFactory.py
 ```
 
-Several optional pramiters can be provided to BDF, use ```-h``` to see a full list of options:
+Several optional pramiters can be provided to BDF, use ```-h``` to see a full list:
 
 ```bash
   -h, --help            Sshow this help message and exit
@@ -42,7 +42,7 @@ Several optional pramiters can be provided to BDF, use ```-h``` to see a full li
   -v, --verbose         Increase output verbosity.
 ```
 
-After running BDF to completion you will be left with 2 files in the output directory (```out``` if not provided). A ```README.md``` file detailing the workings and the types of challenges in the binary, and an ```.apk``` file.
+After running BDF to completion you will be left with 2 files in the output directory (```out``` if not provided). A ```README.md``` file detailing the workings and the types of challenges in the app, and an ```.apk``` file.
 
 # 🏅 Types Of Challenges
 Use BDF to create vulnerable and issue prone Android applications in the below categories:
