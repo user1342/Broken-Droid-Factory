@@ -159,15 +159,15 @@ class BrokenDroidFactory():
         # Create notes output markdown file
         notes_file = open(os.path.join(self.output_path, "README.md"), "w")
         self.logger("Generating notes readme file at '{}'".format(notes_file.name))
-        notes_file.write("# Pseudo Random Vulnerable Android Application Report (BDF)\n")
+        notes_file.write("# BDF Pseudo Random Vulnerable Android Application Report ({})\n".format(self.app_name))
         notes_file.write(
             "This README has been created as part of the pseudo randon vulnerable app creation as par of the [Broken Droid Factory](https://github.com/user1342/Broken-Droid-Factory) generation.\n")
         notes_file.write(
             "The goal of the created application is to identify the security misconfigurations present inside of the APK.\n")
         notes_file.write("## Run Configuration\n")
         notes_file.write(
-            "- **Verbosity** set to: '{}'\n\n - **Temlplate path** set to: '{}', \n\n - **Output path** set to '{}' \n\n - **Working dir** set to: '{}' \n\n - **Challenge level** set to: '{}'\n".format(
-                self.is_verbose, self.template_path, self.output_path, self.working_dir, self.challenge_level))
+            "- **Verbosity** set to: '{}'\n\n - **Temlplate path** set to: '{}', \n\n - **Output path** set to '{}' \n\n - **Working dir** set to: '{}' \n\n - **Challenge level** set to: '{}'\n\n - **App name** of: '{}'\n".format(
+                self.is_verbose, self.template_path, self.output_path, self.working_dir, self.challenge_level, self.app_name))
         notes_file.write("## Vulnerable App Configuration Notes\n")
         notes_file.write(
             "Only read the below if you want a hint on the security misconfigurations inside of the vulnerable APK")
@@ -223,9 +223,9 @@ if __name__ == '__main__':
     work_dir = f"{os.path.dirname(os.path.abspath(__file__))}/working_dir"
 
     # Initialise BDF and go through the BDF steps
-    print("Starting BDF (this may take some time)...")
+    print("Starting Broken Droid Factory (this may take some time)...")
     builder = BrokenDroidFactory(verbosity, template_path, output_path, challenge_level, work_dir)
     builder.copy_template_to_working_dir()
     notes = builder.modify_working_dir_app()
     builder.build_working_dir_app(notes)
-    print("BDF completed, outputs saved to: '{}'".format(output_path))
+    print("Broken Droid Factory completed, outputs saved to: '{}'".format(output_path))
