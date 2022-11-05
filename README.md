@@ -42,6 +42,8 @@ Several optional pramiters can be provided to BDF, use ```-h``` to see a full li
   -v, --verbose         Increase output verbosity.
 ```
 
+After running BDF to completion you will be left with 2 files in the output directory ```out``` if not provided. A ```README.md``` file detailing the workings and the types of challenges in the binary, and an ```.apk``` file.
+
 # 🏅 Types Of Challenges
 Use BDF to create vulnerable and issue prone Android applications in the below categories:
 - Broken Crypto: Insecure Algorithm Usage ✅
