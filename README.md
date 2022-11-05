@@ -19,7 +19,7 @@ After cloning the repository all BDF dependencies can be installed manually or v
 pip install -r REQUIREMENTS.txt
 ```
 
-BDF has been tested on both Windows 10.
+BDF has been tested on Windows 10.
 
 ## Usage
 Run BDF with Python:
