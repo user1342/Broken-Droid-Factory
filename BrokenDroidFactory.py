@@ -7,8 +7,11 @@ from distutils.dir_util import copy_tree
 import randomword
 import patchers.broken_crypto_patcher
 import patchers.common_patcher
+import patchers.exported_intent_patcher
+import patchers.data_in_memory_patcher
 
-patcher_list = [patchers.common_patcher.common_patcher, patchers.broken_crypto_patcher.broken_crypto_patcher]
+patcher_list = [patchers.common_patcher.common_patcher, patchers.broken_crypto_patcher.broken_crypto_patcher,
+                patchers.exported_intent_patcher.exported_intent_patcher, patchers.data_in_memory_patcher.data_in_memory]
 
 
 def delete_dir(dir_path):
