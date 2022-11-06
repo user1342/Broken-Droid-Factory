@@ -174,7 +174,12 @@ class BrokenDroidFactory():
         notes_file.write("## Vulnerable App Configuration Notes\n")
         notes_file.write(
             "Only read the below if you want a hint on the security misconfigurations inside of the vulnerable APK")
+
+        # remove duplicates from notes. TODO remove this when it's nolonger needed
+        notes = list(dict.fromkeys(notes))
+
         for line in notes:
+            line_to_add = "- " + line + "\n\n"
             notes_file.write("- " + line + "\n\n")
         notes_file.close()
 
