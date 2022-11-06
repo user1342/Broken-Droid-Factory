@@ -25,7 +25,7 @@ In addition to the above, you will also need a copy of the Android SDK. If you d
 sdk.dir=C\:\\Users\\<username>\\AppData\\Local\\Android\\Sdk
 ```
 
-The simplest way to do this, is to download [Android Studio](https://developer.android.com/studio) and then open the project ``````Broken-Droid-Factory\demoapp``` inside of it. Android Studio will then do the rest and setup the necessary files and dependancies. Once complete you can close Android Studio and move back to BDF.
+The simplest way to do this, is to download [Android Studio](https://developer.android.com/studio) and then open the project ```Broken-Droid-Factory\demoapp``` inside of it. Android Studio will then do the rest and setup the necessary files and dependancies. Once complete you can close Android Studio and move back to BDF.
 
 BDF has been tested on Windows 10.
 
