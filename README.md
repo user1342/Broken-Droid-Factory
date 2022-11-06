@@ -19,6 +19,16 @@ After cloning the repository all BDF dependencies can be installed manually or v
 pip install -r REQUIREMENTS.txt
 ```
 
+In addition to the above, you will also need a copy of the Android SDK on your machine. If you do not have this already [it can be downloaded here](https://developer.android.com/studio). Once you have downloaded the command line tools, unzip the zip file and follow the below to download the SDK and set the ```ANDROID_HOME``` enviroment variable:
+
+```bash
+cd \cmdline-tools
+mkdir sdk
+```
+```bash
+.\bin\sdkmanager --install --sdk_root=sdk\
+```
+
 BDF has been tested on Windows 10.
 
 ## Usage
