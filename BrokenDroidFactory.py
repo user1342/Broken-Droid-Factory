@@ -204,7 +204,7 @@ if __name__ == '__main__':
 
     # Set a random challenge level if one has not been set
     if challenge_level == None:
-        challenge_level = random.randint(1, 10)
+        challenge_level = random.randint(4, 10)
 
     # Define the default app path
     if template_path == None:
