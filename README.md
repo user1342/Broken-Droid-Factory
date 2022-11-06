@@ -57,8 +57,8 @@ Use BDF to create vulnerable and issue prone Android applications in the below c
 - Broken Crypto: Insecure Algorithm Usage ✅
 - Broken Crypto: Predictable Key Material ✅
 - Exploitable Exported Activities ✅
-- Insecure Data Storage ✅
-- Sensitive Data In Memory ❌
+- Insecure Data Storage ❌
+- Sensitive Data In Memory ✅
 - Tapjacking ❌
 - Task hijacking ❌
 
