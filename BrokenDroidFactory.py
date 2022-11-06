@@ -3,6 +3,7 @@ import os.path
 import random
 import shutil
 import subprocess
+import zipfile
 from distutils.dir_util import copy_tree
 import randomword
 import patchers.broken_crypto_patcher
@@ -76,7 +77,7 @@ class BrokenDroidFactory():
                 verbosity, template_path, output_path, working_dir, challenge_level
             ))
 
-    def copy_template_to_working_dir(self):
+    def copy_template_to_working_dir(self,provided_sdk_path):
         '''
         This function takes a one for one copy of the source code in the template dir and copies it to the working directory.
         '''
@@ -89,6 +90,26 @@ class BrokenDroidFactory():
 
         # copy template dir to working dir
         copy_tree(template_dir, working_dir)
+
+        # Ensure Android SDK is present
+        # TODO Only tested on Windows
+        if not os.path.isfile(os.path.join(template_path, "local.properties")):
+            self.logger("Configuring BDF first run Android SDK location - adding to 'demoapp/local.properties'.")
+            normal_sdk_path = os.path.join(os.getenv('APPDATA'), "..","Local","Android","Sdk")
+            if provided_sdk_path is not None and os.path.isdir(provided_sdk_path):
+                self.logger("Using user provided SDK path of '{}'".format(provided_sdk_path))
+                sdk_path = provided_sdk_path
+
+            elif os.path.isdir(normal_sdk_path):
+                self.logger("Using standard Android SDK path of '{}'".format(normal_sdk_path))
+                sdk_path = normal_sdk_path
+
+            else:
+                sdk_path = input("Android SDK is not present at '{}', nor was a path ro the SDK provided with the '-s' option, please provide a path to your SDK.".format(normal_sdk_path))
+
+            properties_file = open(os.path.join(working_dir, "local.properties"), "w")
+            properties_file.write("sdk.dir="+sdk_path.replace("\\","\\\\").replace("/", "\\\\").replace(":", "\:"))
+            properties_file.close()
 
     def modify_working_dir_app(self):
         '''
@@ -195,6 +216,8 @@ if __name__ == '__main__':
                         help="The output directory for the compiled APK to be saved to.")
     parser.add_argument("-t", "--template", type=str,
                         help="The path to the template app. Do not alter unless you know what you're doing.")
+    parser.add_argument("-s", "--sdk", type=str,
+                        help="The path to your local Android SDK.")
     parser.add_argument("-c", "--challenge", type=int,
                         help="The desired challenge level for the created APK.")
     parser.add_argument("-v", "--verbose", action="store_true",
@@ -206,6 +229,8 @@ if __name__ == '__main__':
     template_path = args.template
     challenge_level = args.challenge
     verbosity = args.verbose
+
+    sdk_path = args.sdk
 
     # Set a random challenge level if one has not been set
     if challenge_level == None:
@@ -233,7 +258,7 @@ if __name__ == '__main__':
     # Initialise BDF and go through the BDF steps
     print("Starting Broken Droid Factory (this may take some time)...")
     builder = BrokenDroidFactory(verbosity, template_path, output_path, challenge_level, work_dir)
-    builder.copy_template_to_working_dir()
+    builder.copy_template_to_working_dir(sdk_path)
     notes = builder.modify_working_dir_app()
     builder.build_working_dir_app(notes)
     print("Broken Droid Factory completed, outputs saved to: '{}'".format(output_path))
