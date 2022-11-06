@@ -38,7 +38,7 @@ python BrokenDroidFactory.py
 Several optional pramiters can be provided to BDF, use ```-h``` to see a full list:
 
 ```
-  -h, --help            Sshow this help message and exit
+  -h, --help            Show this help message and exit.
   -o OUTPUT, --output OUTPUT
                         The output directory for the compiled APK to be saved
                         to.
