@@ -19,7 +19,7 @@ After cloning the repository all BDF dependencies can be installed manually or v
 pip install -r REQUIREMENTS.txt
 ```
 
-In addition to the above, you will also need a copy of the Android SDK. If you do not have this already [it can be downloaded here](https://developer.android.com/studio) you will then need to add a file to the relative path of ```Broken-Droid-Factory\demoapp\local.properties``` in this file add the path to your SDK, for example:
+In addition to the above, you will also need a copy of the Android SDK. If you do not have this already [it can be downloaded here](https://developer.android.com/studio) you will then need to add a file to the relative path of ```Broken-Droid-Factory\demoapp\local.properties``` - in this file add the path to your SDK, for example:
 
 ```
 sdk.dir=C\:\\Users\\<username>\\AppData\\Local\\Android\\Sdk
