@@ -66,6 +66,6 @@ Use BDF to create vulnerable and issue prone Android applications in the below c
 Patchers are used by BDF to modify a template application source and add vulnerable and issue prone code to it. A patcher must have several key aspects and have this purpose in mind. However, outside of this how patchers are implemented is quite flexible and modular.
 - A patcher should be saved to the ```patchers``` directory.
 - A patcher should inherit ```patcher_interface.patcher```
-- A patcher should have a member variable of ```difficulty``` set to a boolean value between 0 and 10, where 0 means it provides no challenge and is used to add variability to the app, and a number higher than 0 denotes it's difficulty score to complete.
-- A patcher should have a ```patch``` function that is run when the patcher is called by BDF and should return a string based on what the patcher has done.
+- A patcher should have a member variable of ```difficulty``` set to an int value between 0 and 10 - where 0 means it provides no challenge and is used to add variability to the app, and a number higher than 0 denotes it's difficulty score to complete (with the higher the score the more difficult it is).
+- A patcher should have a ```patch``` function (of which is automatically run when the patcher is called by BDF) and should return a string based on what the patcher has done.
 - A reference to your created patcher class should be added to the ```patcher_list``` list variable in ```BrokenDroidFactory.py```
