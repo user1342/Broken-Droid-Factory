@@ -19,15 +19,14 @@ After cloning the repository all BDF dependencies can be installed manually or v
 pip install -r REQUIREMENTS.txt
 ```
 
-In addition to the above, you will also need a copy of the Android SDK. If you do not have this already [it can be downloaded here](https://developer.android.com/studio) you will then need to add a file to the relative path of ```Broken-Droid-Factory\demoapp\local.properties``` - in this file add the path to your SDK, for example:
+In addition to the above, you will also need a copy of the Android SDK. If you do not have this already [it can be downloaded here](https://developer.android.com/studio) by either downloading it via Android Studio or downloading it via the command line tools. To ensure that BDF picks up your SDK path perform **one of the following**:
+- Save your SDK path to ```C:\Users\<username>\AppData\Local\Android\Sdk``` on Windows.
+- Provide the path to your SDK to BDF with the ```-s``` paramiter. 
+- Provide the path to your SDK when prompted by the command line.
+- Create a file at ```Broken-Droid-Factory/demoapp/local.properties``` with the contents ```sdk.dir=<path to your SDK>```
+- Open the Android project ```demoapp``` in AndroidStudio, it will then create a local file called ```local.properties``` detailing your SDK path. 
 
-```
-sdk.dir=C\:\\Users\\<username>\\AppData\\Local\\Android\\Sdk
-```
-
-The simplest way to do this, is to download [Android Studio](https://developer.android.com/studio) and then open the project ```Broken-Droid-Factory\demoapp``` inside of it. Android Studio will then do the rest and setup the necessary files and dependancies. Once complete you can close Android Studio and move back to BDF.
-
-BDF has been tested on Windows 10.
+BDF has only been tested on **Windows 10**.
 
 ## Usage
 Run BDF with Python:
@@ -38,6 +37,7 @@ python BrokenDroidFactory.py
 Several optional pramiters can be provided to BDF, use ```-h``` to see a full list:
 
 ```
+optional arguments:
   -h, --help            Show this help message and exit.
   -o OUTPUT, --output OUTPUT
                         The output directory for the compiled APK to be saved
@@ -45,6 +45,7 @@ Several optional pramiters can be provided to BDF, use ```-h``` to see a full li
   -t TEMPLATE, --template TEMPLATE
                         The path to the template app. Do not alter unless you
                         know what you're doing.
+  -s SDK, --sdk SDK     The path to your local Android SDK.
   -c CHALLENGE, --challenge CHALLENGE
                         The desired challenge level for the created APK.
   -v, --verbose         Increase output verbosity.
